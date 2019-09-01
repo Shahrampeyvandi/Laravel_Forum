@@ -5,6 +5,7 @@ namespace LaravelForum\Http\Controllers;
 use Illuminate\Http\Request;
 use LaravelForum\Disccussion;
 use LaravelForum\Http\Requests\AddReplyRequest;
+use LaravelForum\Notifications\NewReplyNotification;
 
 class RepliesController extends Controller
 {
@@ -43,6 +44,7 @@ class RepliesController extends Controller
 
         ]);
 
+        $disccussion->author->notify(new NewReplyNotification($disccussion));
         session()->flash('success' , 'reply added');
         return back();
     }

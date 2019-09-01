@@ -28,14 +28,16 @@
                     <div class="card my-2">
                         <div class="card-header">
                                 <div class="d-flex justify-content-between">
-                                   @if (auth()->user()->id ==  $disccussion->user_id )
-                                   <div>
+                                  @auth
+                                    @if (auth()->user()->id ==  $disccussion->user_id )
+                                    <div>
                                         <form action="{{ route('disccussion.best-answer' , ['disccussion' => $disccussion->slug , 'reply' =>$reply->id]) }}" method="post">
                                             @csrf
                                             <button type="submit" class="btn btn-info btn-sm">انتخاب به عنوان بهترین پاسخ</button>
                                         </form>
                                     </div>
-                                   @endif
+                                    @endif
+                                  @endauth
                                     <div>
                                        
                                       <strong> {{ $reply->auther->name}} </strong>

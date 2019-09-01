@@ -22,3 +22,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('disccussion', 'DisccussionController');
 Route::resource('disccussion/{disccussion}/reply', 'RepliesController');
 Route::post('disccussion/{disccussion}/reply/{reply}/mark-best', 'DisccussionController@Reply')->name('disccussion.best-answer');
+Route::get('user/notifications' , 'UserController@notifications')->name('user.notifications');

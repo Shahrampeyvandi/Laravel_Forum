@@ -5,6 +5,7 @@ namespace LaravelForum\Http\Controllers;
 use LaravelForum\Reply;
 use Illuminate\Http\Request;
 use LaravelForum\Disccussion;
+use LaravelForum\Notifications\ReplyMarkAsBestReply;
 use LaravelForum\Http\Requests\createDisccussionRequest;
 
 class DisccussionController extends Controller
@@ -39,9 +40,9 @@ class DisccussionController extends Controller
     public function Reply(Disccussion $disccussion , Reply $reply)
     {
         $disccussion->markAzBestReply($reply);
-
+        $reply->auther->notify(new ReplyMarkAsBestReply($reply->disccussion));
         session()->flash('success' , 'success!!!');
-        
+
         return back();
     }
 

@@ -31,7 +31,17 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                       @auth
+                       <li class="nav-item">
+                       <a href="{{ route('user.notifications') }}">
+                            <span class="badge badge-danger text-white">
+                                    پیغام جدید
+                                        {{auth()->user()->unreadNotifications->count()}}
+    
+                                </span>
+                    </a>
+                        </li>
+                       @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
